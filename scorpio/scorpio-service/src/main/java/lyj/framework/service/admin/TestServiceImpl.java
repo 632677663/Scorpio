@@ -23,8 +23,6 @@ public class TestServiceImpl implements TestService {
         response.setId(findTest.getId());
         response.setNo(findTest.getNo());
         
-        System.out.println("doing...");
-        
         return response;
         
     }

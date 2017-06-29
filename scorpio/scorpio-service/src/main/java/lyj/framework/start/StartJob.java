@@ -1,5 +1,6 @@
 package lyj.framework.start;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -15,7 +16,12 @@ import lyj.framework.dao.admin.vo.TestVo;
  * @date 2017年5月23日 下午2:28:00
  */
 public class StartJob {
+    
+    private static Logger logger = Logger.getLogger(StartJob.class);
+    
     public static void main(String[] args) {
+        
+        
         
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");
         
@@ -23,10 +29,7 @@ public class StartJob {
         
         TestResponse vo = service.findTest("7");
         
-        System.out.println(vo.getNo());
-        
-        System.out.println("end...");
-        
+        logger.info("job start ....");
         
         while(true){
             

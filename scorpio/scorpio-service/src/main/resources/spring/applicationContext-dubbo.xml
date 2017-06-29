@@ -17,9 +17,9 @@
     <!-- 使用multicast广播注册中心暴露发现服务地址 -->
      <dubbo:registry protocol="zookeeper" address="${zookeeper.address}" />
     
-    <dubbo:protocol name="dubbo" port="${dubbo.port}" />
+    <dubbo:protocol name="dubbo" port="${dubbo.port}" serialization="json" charset="UTF-8"/>
 
-    <dubbo:provider timeout="20000" />
+    <dubbo:provider timeout="20000"/>
 
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="lyj.framework.api.admin.service.TestService" loadbalance="leastactive" retries="0" ref="testService" />

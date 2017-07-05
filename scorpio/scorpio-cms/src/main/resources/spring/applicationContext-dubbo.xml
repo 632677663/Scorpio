@@ -19,6 +19,6 @@
     <dubbo:protocol name="dubbo" port="${dubbo.port}" />
     
     <!-- 生成远程服务代理，可以和本地bean一样使用electricBillService -->
-    <dubbo:reference id="testService" interface="lyj.framework.api.admin.service.TestService" loadbalance="leastactive" cluster="failover" timeout="60000" check="true" />
+    <dubbo:reference id="userServiceAdmin" interface="lyj.framework.api.admin.service.IUserService" loadbalance="leastactive" cluster="failover" timeout="60000" check="true" />
  
 </beans>

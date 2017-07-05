@@ -22,10 +22,10 @@
     <dubbo:provider timeout="20000"/>
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="lyj.framework.api.admin.service.TestService" loadbalance="leastactive" retries="0" ref="testService" />
+    <dubbo:service interface="lyj.framework.api.admin.service.IUserService" loadbalance="leastactive" retries="0" ref="userServiceAdmin" />
         
     <!-- 和本地bean一样实现服务 -->
-    <bean id="testService" class="lyj.framework.service.admin.TestServiceImpl" />
+    <bean id="userServiceAdmin" class="lyj.framework.service.admin.impl.UserServiceImpl" />
         
         
 </beans>

@@ -2,7 +2,7 @@ package lyj.framework.cms.admin.bean;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class Login implements Serializable {
 
     /** 
     * @Fields serialVersionUID

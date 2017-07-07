@@ -16,6 +16,7 @@ import lyj.framework.api.admin.response.ApiLoginResponse;
 import lyj.framework.api.admin.service.IUserService;
 import lyj.framework.cms.admin.bean.Login;
 import lyj.framework.cms.admin.constant.AdminConstant;
+import lyj.framework.common.constant.ReturnCode;
 import lyj.framework.util.SerialNoUtil;
 import lyj.framework.util.VerifyCodeUtil;
 
@@ -67,6 +68,8 @@ public class LoginController {
         //获取session中的验证码
         String random_code = (String) request.getSession().getAttribute(AdminConstant.KEY_VERIFY_CODE);
         
+        ModelAndView modelAndView = new ModelAndView();
+        
         if(code.equalsIgnoreCase(random_code)){
             ApiLoginRequest apiRequest = new ApiLoginRequest();
             
@@ -77,13 +80,31 @@ public class LoginController {
             apiRequest.setLoginPwd(login.getPassword());
             
             ApiLoginResponse info = userServiceAdmin.login(apiRequest);
-            //登录信息放入session
-            request.getSession().setAttribute(AdminConstant.KEY_LOGIN_INFO, info);
             
-            return null;
+            if(null == info){
+                logger.error("系统异常");
+                modelAndView.addObject("message","系统异常");
+                return modelAndView;
+            }
+            
+            if(ReturnCode.RETURN_SUCCESS.equals(info.getReturnCode())){
+                //登录信息放入session
+                request.getSession().setAttribute(AdminConstant.KEY_LOGIN_INFO, info);
+                //TODO 跳转正确页面
+                return null;
+            }else{
+                logger.error(info.getReturnMessage());
+                modelAndView.addObject("message",info.getReturnMessage());
+                modelAndView.addObject("name",login.getName());
+                modelAndView.addObject("password",login.getName());
+                modelAndView.setViewName("/login/login");
+                return modelAndView;
+            }
+           
         }else{
             logger.error("验证码错误");
-            return null;
+            modelAndView.addObject("message","验证码错误");
+            return  modelAndView;
         }
         
         

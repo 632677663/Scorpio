@@ -84,7 +84,7 @@
                                                 <label class="block clearfix">
                                                     <span>
                                                         <input type="text" name="code" class="form-control" style="width:25%;display:inline-block;"
-                                                            placeholder="验证码" /><img id="imgCode" style="margin-left:15px;" onClick="javascript:flushValidataCode();"/>
+                                                            placeholder="验证码" value="${code}"/><img id="imgCode" style="margin-left:15px;" onClick="javascript:flushValidataCode();"/>
                                                     </span>
                                                 </label>
 

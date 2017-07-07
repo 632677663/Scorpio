@@ -67,7 +67,10 @@ public class UserServiceImpl implements IUserService {
         
         if(null == info){
             logger.error("未查询到登录用户:"+request.getLoginName()+"用户信息,流水号:"+request.getSerialNo());
-            return null;
+            ApiLoginResponse response = new ApiLoginResponse();
+            response.setReturnCode(AdminExceptionCode.LOGIN_FAIL);
+            response.setReturnMessage("账户或密码错误");
+            return response;
         }
         
         logger.info("登陆业务完成,流水号:"+request.getSerialNo());

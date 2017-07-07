@@ -14,5 +14,7 @@ public class AdminExceptionCode {
     public static final String LOGIN_NAME_IS_NULL = "A00102";
     //登录密码为空
     public static final String LOGIN_PWD_IS_NULL = "A00103";
+    //账户或密码错误
+    public static final String LOGIN_FAIL = "A00104";
     
 }
